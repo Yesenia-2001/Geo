@@ -8,7 +8,7 @@
   </head>
     @include('layouts.partials.navbar')
   <body>
-        <div class="container">
+        <div class="containertablageneral">
             @yield('content')
         </div>
 

@@ -1,10 +1,10 @@
 @extends('layouts.app-master')
 
 @section('content')
-<head><title>Conductores</title></head>
+<head><title>Conductor</title></head>
 
 <body class="borde-general">
-  <input type="text" class="input-buscar" placeholder="Buscar">
+  <input type="text" class="input-buscar" placeholder="    Buscar">
   <a class="nav-link active" href="" class="btn btn-primary" id="boton-filtrar">Filtrar</a>
   <button type="button" class="btn btn-primary" id="boton-crear" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Crear +
@@ -14,66 +14,79 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo conductor</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-top:30px">Crear nuevo conductor</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-      <form action="/empresas"method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="formu1">
-        <div class="mb-3" id="formu1">
-        <label for="" >Nombre</label>
-            <input id="nombre" name="nombre" type="string" placeholder="Nombre" class="form-control" tabindex="1" require="true" >
+      <div class="modal-body" style="margin-top:-15px">
+      <form action="/conductors"method="POST" enctype="multipart/form-data" >
+        @csrf
+        <div class="formu1">
+          <div class="mb-3" id="formu1">
+            <label for="" style="margin-left:7px">Nombre</label>
+              <input id="nombre" name="nombre" type="string" placeholder="Nombre" class="form-control" tabindex="1" required="true" >
+          </div>
+          <div class="mb-3" id="formu1">
+            <label for="" style="margin-left:7px">Apellido</label>
+              <input id="apellido" name="apellido" type="string" placeholder="Apellido" class="form-control" tabindex="2" required="true">
+          </div>
+          <div class="mb-3" id="formu1">
+            <label for="" style="margin-left:7px">Teléfono</label>
+            <input id="telefono" name="telefono" type="integer" placeholder="123456789" class="form-control" tabindex="3" required="true">
+          </div>
+          <div class="mb-3" id="formu1">
+            <label for="" style="margin-left:7px">Dirección</label>
+            <input id="direccion" name="direccion" type="string" placeholder="cra00 #00-98" class="form-control" tabindex="3" required="true">
+          </div>
         </div>
-        <div class="mb-3" id="formu1">
-        <label for="" >Apellido</label>
-            <input id="apellido" name="apellido" type="string" placeholder="Apellido" class="form-control" tabindex="2" require="true">
-        </div>      
-        <div class="mb-3" id="formu1">
-        <label for="">Teléfono de contácto</label>
-        <input id="telefono" name="telefono" type="integer" placeholder="123456789" class="form-control" tabindex="3" require="true">
-        </div>
-        <div class="mb-3" id="formu1">
-        <label for="">Dirección</label>
-        <input id="direccion" name="direccion" type="string" placeholder="cll-00#00" class="form-control" tabindex="3" require="true">
-        </div>
-    </div>
-    <div class="formu22">
-        <div class="mb-3" id="formu1">
-        <label for="">N° pase</label>
-        <input id="nomeropase" name="nomeropase" type="integer" placeholder="1234" class="form-control" tabindex="4" require="true">
-        </div>
-        <div class="mb-3" id="formu1">
-        <label for="">Pase</label>
-        <input id="pase" name="pase" type="file" class="form-control" tabindex="5" require="true">
-        </div>
-        <div class="mb-3" id="formu2">
-        <label for="">Cédula</label>
-        <input id="cedula" name="cedula" type="file" class="form-control" tabindex="6" require="true">
-        </div>
-        <div class="mb-3" id="formu2">
-        <label for="">Hoja de vida</label>
-        <input id="hv" name="hv" type="file" class="form-control" class="form-control is-valid" tabindex="7" require="true">
-        </div>
-    </div>
-    <div>
-        <center><button type=""submit tabindex="9" class="botoncrear" style="">Crear</button></center>
-    </div>
-    </form>
+        <div class="formu22">
+            <div class="mb-3" id="formu1">
+              <label for="" style="margin-left:7px">N° pase</label>
+                <input id="nomeropase" name="nomeropase" type="integer" placeholder="1234" class="form-control" tabindex="4" required="true">
+              </div>
+              <div class="mb-3" id="formu1">
+                <label for="" style="margin-left:7px">Pase</label>
+                <input id="pase" name="pase" type="file" class="form-control" tabindex="5" required="true">
+              </div>
+              <div class="mb-3" id="formu2">
+                <label for="" style="margin-left:7px">Cédula</label>
+                <input id="cedula" name="cedula" type="file" class="form-control" tabindex="6" required="true">
+              </div>
+              <div class="mb-3" id="formu2">
+                <label for="" style="margin-left:7px">Hoja de vida</label>
+                <input id="hv" name="hv" type="file" class="form-control" class="form-control is-valid" tabindex="7" required="true">
+              </div>
+            </div>
+            <div>
+              <center><button type="submit" tabindex="9" class="botoncrear">Crear</button></center>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+  function ConfirmDelete(){
+    var respuesta = confirm("¿Está seguro que desea eliminar?");
+    if(respuesta == true){
+      return true;
+    }
+    else{
+      return false
+    }
+  }
+</script>
+
   <table class=" table mt-4" id="tabla">
       <tr>
-      <th scope= "col">Nombre</th>
+            <th scope= "col">Nombre</th>
             <th scope= "col">Apellido</th>
-            <th scope= "col">Telefono</th>
-            <th scope= "col">Direccion</th>
+            <th scope= "col">Teléfono</th>
+            <th scope= "col">Dirección</th>
             <th scope= "col">No. Pase</th>
+            <th scope="col">Opciones</th>
       </tr>
-  
+
       @foreach ($conductors as $conductor)
         <tr>
             <td>{{$conductor->nombre}}</td>
@@ -97,7 +110,7 @@
               </a>
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-danger">
+              <button type="submit" class="btn btn-danger" onclick="return ConfirmDelete()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
                 </svg>
@@ -105,7 +118,7 @@
             </form>
           </td>
         </tr>
-      @endforeach 
+      @endforeach
   </table>
 </body>
 @endsection

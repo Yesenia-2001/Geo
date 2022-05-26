@@ -4,10 +4,10 @@
 <head><title>Vehículos</title></head>
 
 <body class="borde-general">
-  <input type="text" class="input-buscar" placeholder="Buscar">
+  <input type="text" class="input-buscar" placeholder="    Buscar">
   <a class="nav-link active" href="" class="btn btn-primary" id="boton-filtrar">Filtrar</a>
 
-<button type="button" class="btn btn-primary" id="boton-crear" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-primary" id="boton-crear" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Crear +
 </button>
 
@@ -15,64 +15,76 @@
   <div class="modal-dialog" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo Vehículo</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-top:18px">Crear nuevo Vehículo</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="margin-top:-5px">
       <form action="/vehiculos" method="POST" enctype="multipart/form-data" class="form-register">
     @csrf
     <div class="formu1"> 
     <div class="mb-3" id="formu1">
-      <label for="" >Modelo</label>
+      <label for="" style="margin-left:7px">Modelo</label>
         <input id="modelo" name="modelo" type="text" placeholder="Nombre" class="form-control" tabindex="1" required="true" value="{{ old('modelo')}}">
     </div>
     <div class="mb-3" id="formu1">
-      <label for="" >Matrícula</label>
+      <label for="" style="margin-left:7px">Matrícula</label>
         <input id="matricula" name="matricula" type="varchar" placeholder="XYZ-123" class="form-control" tabindex="2" required="true" value="{{ old('matricula')}}">
     </div>      
     <div class="mb-3" id="formu1">
-      <label for="">Nombre conductor</label>
+      <label for="" style="margin-left:7px">Nombre conductor</label>
       <input id="nombreconduc" name="nombreconduc" type="text" placeholder="Nombre" class="form-control" tabindex="3" required="true" value="{{ old('nombreconduc')}}">
     </div>
     <div class="mb-3" id="formu1">
-      <label for="">Año</label>
+      <label for="" style="margin-left:7px">Año</label>
       <input id="año" name="año" type="integer" placeholder="Nombre" class="form-control" tabindex="4" required="true" value="{{ old('año')}}">
     </div>
     <div class="mb-3" id="formu1">
-      <label for="" >Técnico mecánica</label>
+      <label for="" style="margin-left:7px">Técnico mecánica</label>
         <input id="tecnomecanica" name="tecnomecanica" type="file" class="form-control" tabindex="5" required="true" value="{{ old('tecnomecanica')}}">
     </div> 
 </div>
     <div class="formu2">    
     <div class="mb-3" id="formu2">
-      <label for="">SOAT</label>
+      <label for="" style="margin-left:7px">SOAT</label>
       <input id="soat" name="soat" type="file" class="form-control" tabindex="6" required="true" value="{{ old('soat')}}">
     </div>
     <div class="mb-3" id="formu2">
-      <label for="">Tarjeta de propiedad</label>
+      <label for="" style="margin-left:7px">Tarjeta de propiedad</label>
       <input id="tarjetapropiedad" name="tarjetapropiedad" type="file"  class="form-control" tabindex="7" required="true" value="{{ old('tarjetapropiedad')}}">
     </div>
     <div class="mb-3" id="formu2">
-      <label for="">Placa</label>
+      <label for="" style="margin-left:7px">Placa</label>
       <input id="placa" name="placa" type="varchar" placeholder="Placa" class="form-control" tabindex="8" required="true" value="{{ old('placa')}}">
     </div>
     <div class="mb-3" id="formu2">
-      <label for="">Documento conductor</label>
+      <label for="" style="margin-left:7px">Documento conductor</label>
       <input id="documentoconduc" name="documentoconduc" placeholder="1234567890"type="integer" class="form-control" tabindex="9" required="true" value="{{ old('documentoconduc')}}">
     </div>
     <div class="mb-3" id="formu2">
-      <label for="">Fecha de vencimiento</label>
+      <label for="" style="margin-left:7px">Fecha de vencimiento</label>
       <input id="fechavencimiento" name="fechavencimiento" type="date" class="form-control" tabindex="10" required="true" value="{{ old('fechavencimiento')}}">
     </div>
   </div> 
         <div>
-        <center><button type="" submit tabindex="10" class="botoncrear">Crear</button></center>
+        <center><button type="submit"  tabindex="10" class="botoncrear">Crear</button></center>
         </div>
     </form>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function ConfirmDelete(){
+    var respuesta = confirm("¿Está seguro que desea eliminar?");
+    if(respuesta == true){
+      return true;
+    }
+    else{
+      return false
+    }
+  }
+</script>
 
 <table class=" table mt-4" id="tabla">
       <tr>
@@ -83,6 +95,7 @@
         <th scope="col">Placa</th>
         <th scope="col">Documento</th>
         <th scope="col">Fecha de vencimiento</th>
+        <th scope="col">Opciones</th>
       </tr>
       @foreach ($vehiculos as $vehiculo)
         <tr>
@@ -110,7 +123,7 @@
               </a>
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-danger">
+              <button type="submit" class="btn btn-danger" onclick="return ConfirmDelete()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
                 </svg>

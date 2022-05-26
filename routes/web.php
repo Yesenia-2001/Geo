@@ -33,6 +33,8 @@ Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/logout', [LogoutController::class, 'logout']);
 
+Route::get('/home' ,function(){return  view('/home.index');});
+
 Route::resource('vehiculos', 'App\Http\Controllers\VehiculoController');
 Route::resource('empresas', 'App\Http\Controllers\EmpresaController');
 Route::resource('conductors', 'App\Http\Controllers\ConductorController');

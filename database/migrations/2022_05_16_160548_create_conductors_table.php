@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('pase');
             $table->string('cedula');
             $table->string('hv');
-
             $table->timestamps();
         });
     }

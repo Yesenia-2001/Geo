@@ -8,26 +8,27 @@
     <link rel="stylesheet" href="{{ asset('css/estilo.css')}}">
 </head>
   <body>
-    <div class="containerlogin">
+    <div class="containerlogin" style="margin-top:-px">
     @yield('content')
-      <form action="/register" method="POST">
+      <form action="/register" method="POST" style="margin-top:-20px">
           @csrf
           <img id="logocarlogin" src="img/logocar.jpg">
+          <h4 class="mt-3">Regístrate</h4>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+          <input type="text" class="form-control" name="username" aria-describedby="emailHelp" required="true">
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required="true">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" name="password">
+          <input type="password" class="form-control" name="password" required="true">
         </div>
         <div class="mb-3">
           <label class="exampleInputPassword1" class="form-label">Confirmar contraseña</label>
-          <input type="password" class="form-control" name="password_confirmation">
+          <input type="password" class="form-control" name="password_confirmation" required="true">
         </div>
         <div class="mb-3">
           <a href="/login">Iniciar sesión</a>

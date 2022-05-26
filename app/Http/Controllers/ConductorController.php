@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conductor;
 use Illuminate\Http\Request;
-use Validator;
+Use Validator;
 
 class ConductorController extends Controller
 {
@@ -26,7 +26,9 @@ class ConductorController extends Controller
      */
     public function create()
     {
-        //
+        $conductor = Conductor::find($id);
+        return view('conductor.edit')->with('conductor', $conductor);
+        
     }
 
     /**
@@ -38,61 +40,64 @@ class ConductorController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'telefono' => 'required',
-            'direccion' => 'required',
-            'nomeropase' => 'required|numeric',
-            'pase' => 'required|image|mimes:jgp,jpeg,png,svg|max:2048|',
-            'cedula' => 'required|image|mimes:jgp,jpeg,png,svg|max:2048|',
-            'hv' => 'required|image|mimes:jgp,jpeg,png,svg|max:2048|',
-
+            'nombre'=>'required|max:10',
+            'apellido'=>'required|max:10',
+            'telefono'=>'required|min:5|numeric',
+            'direccion'=>'required',
+            'nomeropase'=>'required|numeric',
+            'pase'=>'required|mimes:jgp,jpeg,png,svg|max:2048|',
+            'cedula'=>'required|mimes:jgp,jpeg,png,svg|max:2048|',
+            'hv'=>'required|mimes:jgp,jpeg,png,svg|max:2048|',
 
         ]);
-
-        if ($validator->fails()){
+        if($validator ->fails()){
             return back()
             ->withInput()
             ->with('ErrorInsert', 'llenar todos los campos')
             ->withErrors($validator);
         }
-
         if($request->hasFile('pase')) {
             $image = $request->file('pase');
-
+           //  print_r($image);
             $image_name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('img\conductor\pase');
+           //  echo $image;
+           //  exit(0);
+            $destinationPath = public_path('img/conductor/pase');
             $image->move($destinationPath, $image_name);
         }
         if($request->hasFile('cedula')) {
             $image = $request->file('cedula');
-
+           //  print_r($image);
             $image_name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('img\conductor\cedula');
+           //  echo $image;
+           //  exit(0);
+            $destinationPath = public_path('img/conductor/cedula');
             $image->move($destinationPath, $image_name);
         }
         if($request->hasFile('hv')) {
             $image = $request->file('hv');
-
+           //  print_r($image);
             $image_name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('img\conductor\hv');
+           //  echo $image;
+           //  exit(0);
+            $destinationPath = public_path('img/conductor/hv');
             $image->move($destinationPath, $image_name);
-        
-        
-            $conductors =  new Empresa();
-            $conductors->nombre = $request->nombre;
-            $conductors->apellido = $request->apellido;
-            $conductors->telefono = $request->telefono;
-            $conductors->direccion = $request->direccion;
-            $conductors->nomeropase = $request->nomeropase;
-            $conductors->pase = $request->pase;
-            $conductors->cedula = $request->cedula;
-            $conductors->hv = $request->hv;
 
-            $empresas->save();
+
+            $conductor =  new Conductor();
+            $conductor->nombre = $request->nombre;
+            $conductor->apellido = $request->apellido;
+            $conductor->telefono = $request->telefono;
+            $conductor->direccion = $request->direccion;
+            $conductor->nomeropase = $request->nomeropase;
+            $conductor->pase = $request->pase;
+            $conductor->cedula = $request->cedula;
+            $conductor->hv = $request->hv;
+
+            $conductor->save();
             return redirect('/conductors');
 
-        };
+        }
     }
 
     /**
@@ -113,9 +118,10 @@ class ConductorController extends Controller
      * @param  \App\Models\Conductor  $conductor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Conductor $conductor)
+    public function edit($id)
     {
-        //
+        $conductor = Conductor::find($id);
+        return view('conductor.edit')->with('conductor', $conductor );
     }
 
     /**
@@ -125,9 +131,21 @@ class ConductorController extends Controller
      * @param  \App\Models\Conductor  $conductor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conductor $conductor)
+    public function update(Request $request, $id)
     {
-        //
+        $conductors = Conductor::find($id);
+        $conductors->nombre = $request->get('nombre');
+        $conductors->apellido = $request->get('apellido');
+        $conductors->telefono = $request->get('telefono');        
+        $conductors->direccion = $request->get('direccion');
+        $conductors->nomeropase = $request->get('nomeropase');
+        $conductors->pase = $request->get('pase');
+        $conductors->cedula = $request->get('cedula');
+        $conductors->hv = $request->get('hv');
+        
+        $conductors->save();
+
+        return redirect('/conductors');
     }
 
     /**
@@ -136,8 +154,10 @@ class ConductorController extends Controller
      * @param  \App\Models\Conductor  $conductor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Conductor $conductor)
+    public function destroy($id)
     {
-        //
+        $condictor = Conductor::find($id);
+        $condictor->delete();
+        return redirect('conductors');
     }
 }

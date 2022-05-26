@@ -1,16 +1,29 @@
 #nav-estilo{
-    font-size: 24px;
+    font-size: 20px;
     box-shadow: 0px 0px 5px 1px black;
+    font-family: Arial, Helvetica, sans-serif;   
+}
+#titulos-edit{
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    
+}
+#titulos-show{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
     
 }
 .navbar-nav{
     margin-top: 15px;
-    margin-left: 10em;
+    margin-left: 15em;
     font-family: Arial, Helvetica, sans-serif;
 }
 #logocar{
-    margin-left: 180px;
+    margin-left: 100px;
+}
+#mensajerror{
+    font-size: small;
+    margin-top: 15px;
 }
 
 .circulo {
@@ -20,8 +33,9 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
     background:  #AA3F3F;
-    margin-left: 75px;
+    /* margin-left: 2em; */
     margin-top: 15px;
+    display: flex;
     
 }
 .input-buscar{
@@ -29,7 +43,7 @@
     border-radius: 10px;
     height: 60px;
     width: 31em;
-    margin-left: 10px;
+    margin-left: 90px;
     margin-top: 20px;
     background-color: #EEF0F8;
     font-family: Arial, Helvetica, sans-serif;
@@ -41,12 +55,21 @@
     width:150px;
     height: 60px;
     font-size: 24px;
-    margin-left: 34em;
+    margin-left: 38em;
     margin-top: -88px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: gray;
     border: 0;
+}
+#table-index{
+    width: 80em;
+    /* border:20px solid red; */
+    margin-top: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 1px black;
+    margin-left: 43px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #boton-filtrar{
     background-color: #F8EEEF;
@@ -54,7 +77,7 @@
     width:150px;
     height: 60px;
     font-size: 24px;
-    margin-left: 27.2em;
+    margin-left: 31.2em;
     margin-top: -60px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -62,9 +85,10 @@
 
 }
 #tabla{
-    font-size: 20px;
-    width: 57em;
-    margin-right: -30px;
+    font-size: 18px;
+    width: 60em;
+    margin-left: 80px;
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     /* border: 1px solid red; */
    
@@ -73,14 +97,18 @@
     height: 32em;
     margin-top: -40px;
 }
-.container{
+
+.containertablageneral{
+    width: 80em;
+    /* border:20px solid red; */
     margin-top: 30px;
     border-radius: 20px;
-    width: 1000em;
     box-shadow: 0px 0px 5px 1px black;
+    margin-left: 43px;
+    
 } 
 .containerlogin{
-    margin-top: 90px;
+    margin-top: 70px;
     border-radius: 10px;
     width: 35em;
     box-shadow: 0px 0px 5px 1px black;
@@ -101,7 +129,7 @@
 .formu2{
     width: 15em;
     margin-left: 24em;
-    margin-top: -24em;
+    margin-top: -24.6em;
 }
 .formu22{
     width: 15em;
@@ -118,6 +146,7 @@
     font-family: Arial, Helvetica, sans-serif;
     border: 0;
     margin-top: 10px;
+    margin-left: 32px;
 
 }
 .modal-content{
@@ -128,37 +157,50 @@
     right: 7em;
     top: 30px;   
 }
+.modal-body{
+    margin-top: 59px;
+    display: flex;
+    position: relative;
+    left: -0.8em;
+    border-radius: 10px;
+    width: 50em;
+    margin-top: 30px;
+    
+}
+.modal-body1{
+    display: flex;
+    position: relative;
+    left: 19em;
+    border-radius: 10px;
+    width: 50em;
+    margin-top: 30px;
+
+    
+}
 .modal-header{
     border: 0;
     margin-left: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-
-/* .section-formu{
-    border-radius: 10px;
-    height: 38em;
-    width: 50em;
-    margin-left: 50px;
-    margin-top: 30px;
-    box-shadow: 0px 0px 5px 1px black; 
-}
-#formucon{
-    width: 15em;
-    margin-left: 90px;
-    margin-top: 10px;
-}
-#formucon1{
-    width: 15em;
-    margin-left: 25em;
-    margin-top: -159px;
-} */
-.section-formu-con{
-    /*border: 1px solid black;*/
+/* .section-formu-con{
+    border: 1px solid black;
     border-radius: 10px;
     height: 25em;
     width: 45em;
     margin-left: 50px;
     margin-top: 30px;
     box-shadow: 0px 0px 5px 1px black; 
+}  */
+#eye{
+    position: absolute;
+    left: 47em;
+    transform: translate(0,-50%);
+    top: 24.7em;
+    cursor: pointer;
+    color: #7a797e;   
+}
+#map{
+    height: 500px;
+    width: 100%;
 }

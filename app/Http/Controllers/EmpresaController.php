@@ -26,7 +26,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        $empresa = Empresa::find($id);
+        return view('empresa.edit')->with('empresa', $empresa);
     }
 
     /**
@@ -67,12 +68,12 @@ class EmpresaController extends Controller
             $image->move($destinationPath, $image_name);
             $empresas =  new Empresa();
             $empresas->nombrempresa = $request->nombrempresa;
-            $empresas->kit = $request->kit;
             $empresas->direccion = $request->direccion;
-            $empresas->personacontacto = $request->personacontacto;
             $empresas->telefonocontacto = $request->telefonocontacto;
             $empresas->logo = $request->logo;
             $empresas->correo = $request->correo;
+            $empresas->kit = $request->kit;
+            $empresas->personacontacto = $request->personacontacto;
             $empresas->contraseña = $request->contraseña;
 
             $empresas->save();
@@ -99,9 +100,10 @@ class EmpresaController extends Controller
      * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empresa $empresa)
+    public function edit($id)
     {
-        //
+        $empresa = Empresa::find($id);
+        return view('empresa.edit')->with('empresa', $empresa );
     }
 
     /**
@@ -111,9 +113,20 @@ class EmpresaController extends Controller
      * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request, $id)
     {
-        //
+        $empresa = Empresa::find($id);
+        $empresa->nombrempresa = $request->get('nombrempresa');
+        $empresa->direccion = $request->get('direccion');
+        $empresa->telefonocontacto = $request->get('telefonocontacto');        
+        $empresa->logo = $request->get('logo');
+        $empresa->correo = $request->get('correo');
+        $empresa->kit = $request->get('kit');
+        $empresa->personacontacto = $request->get('personacontacto');
+        $empresa->contraseña = $request->get('contraseña');
+        $empresa->save();
+
+        return redirect('/empresas');
     }
 
     /**
